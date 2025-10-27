@@ -104,23 +104,23 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GIT_HUB_TOKEN }}
-          repository: cesarapires/trem-infra
+          repository: tremufla/trem-infra
           branch: main
-  sonarqube:
-    name: 🛰️ SonarQube
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Download coverage report
-      uses: actions/download-artifact@v2
-      with:
-        name: coverage-report
-        path: coverage
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_GITHUB_ACTIONS_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  # sonarqube:
+  #   name: 🛰️ SonarQube
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #     with:
+  #       fetch-depth: 0
+  #   - name: Download coverage report
+  #     uses: actions/download-artifact@v2
+  #     with:
+  #       name: coverage-report
+  #       path: coverage
+  #   - name: SonarQube Scan
+  #     uses: sonarsource/sonarqube-scan-action@master
+  #     env:
+  #       SONAR_TOKEN: ${{ secrets.SONAR_GITHUB_ACTIONS_TOKEN }}
+  #       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
