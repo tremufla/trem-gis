@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, HydratedDocument, Types } from 'mongoose';
 
 export enum ApplicationStatus {
   SCHEDULED = 'SCHEDULED',
@@ -10,6 +10,9 @@ export enum ApplicationStatus {
 
 @Schema({ timestamps: true })
 export class ApplicationSchedule extends Document {
+  @Prop({ type: Types.ObjectId })
+  id: string;
+
   @Prop({ required: true })
   propertiId: string;
 
@@ -38,4 +41,7 @@ export class ApplicationSchedule extends Document {
   longitude: number;
 }
 
-export const ApplicationScheduleSchema = SchemaFactory.createForClass(ApplicationSchedule);
+export const ApplicationScheduleSchema =
+  SchemaFactory.createForClass(ApplicationSchedule);
+
+export type ApplicationScheduleDocument = HydratedDocument<ApplicationSchedule>;
