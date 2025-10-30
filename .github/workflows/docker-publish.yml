@@ -79,7 +79,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: cesarapires/gitops-projects
+          repository: tremufla/trem-infra
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
 
