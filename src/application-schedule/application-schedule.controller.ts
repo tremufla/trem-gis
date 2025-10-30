@@ -10,8 +10,6 @@ export class ApplicationScheduleController {
 
   @Get()
   mapView(@Body() currentLocationDto: CurrentLocationDto) {
-    return this.applicationScheduleService.mapView(
-      currentLocationDto,
-    );
+    return this.applicationScheduleService.mapView(currentLocationDto);
   }
 }

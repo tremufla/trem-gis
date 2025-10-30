@@ -11,7 +11,9 @@ describe('ApplicationScheduleController', () => {
       providers: [ApplicationScheduleService],
     }).compile();
 
-    controller = module.get<ApplicationScheduleController>(ApplicationScheduleController);
+    controller = module.get<ApplicationScheduleController>(
+      ApplicationScheduleController,
+    );
   });
 
   it('should be defined', () => {
