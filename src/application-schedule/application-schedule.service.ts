@@ -2,11 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import {
   ApplicationSchedule,
-  ApplicationStatus,
+  ApplicationScheduleDocument,
 } from './entities/application-schedule.entity';
 import { Model } from 'mongoose';
 import { CurrentLocationDto } from './dto/current-location.dto';
 import { ApplicationScheduleMapPointDto } from './dto/application-schedule-map-point.dto';
+import { ApplicationScheduleByRiskDto } from './dto/application-schedule-by-risk.dto';
 
 @Injectable()
 export class ApplicationScheduleService {
@@ -14,13 +15,15 @@ export class ApplicationScheduleService {
 
   constructor(
     @InjectModel(ApplicationSchedule.name)
-    private appScheduleModel: Model<ApplicationSchedule>,
+    private appScheduleModel: Model<ApplicationScheduleDocument>,
   ) {}
 
-  async mapView(currentLocationDto: CurrentLocationDto) {
+  mapView(
+    currentLocationDto: CurrentLocationDto,
+  ): ApplicationScheduleByRiskDto {
     const { latitude, longitude } = currentLocationDto;
 
-    // const applicationScheduleList = [await this.appScheduleModel
+    // const applicationScheduleList: ApplicationSchedule[] = await this.appScheduleModel
     //   .find({
     //     status: { $ne: ApplicationStatus.COMPLETED },
     //     location: {
@@ -38,21 +41,57 @@ export class ApplicationScheduleService {
     const applicationScheduleList: ApplicationSchedule[] = [];
 
     const danger: ApplicationScheduleMapPointDto[] = [
-      { publicId: 'test', latitude: -21.222821377953085, longitude: -44.98476010185646 },
-      { publicId: 'test2', latitude: -21.23722240735684, longitude: -44.98149689258798 },
-      { publicId: 'test3', latitude: -21.236582391466943, longitude: -45.001591391767604 },
+      {
+        publicId: 'test',
+        latitude: -21.222821377953085,
+        longitude: -44.98476010185646,
+      },
+      {
+        publicId: 'test2',
+        latitude: -21.23722240735684,
+        longitude: -44.98149689258798,
+      },
+      {
+        publicId: 'test3',
+        latitude: -21.236582391466943,
+        longitude: -45.001591391767604,
+      },
     ];
 
     const warning: ApplicationScheduleMapPointDto[] = [
-      { publicId: 'test4', latitude: -21.206978621987176, longitude: -44.98802331112494 },
-      { publicId: 'test5', latitude: -21.22602172822201, longitude: -45.022544630228424 },
-      { publicId: 'test6', latitude: -21.25306191512753, longitude: -45.005671830261385 },
+      {
+        publicId: 'test4',
+        latitude: -21.206978621987176,
+        longitude: -44.98802331112494,
+      },
+      {
+        publicId: 'test5',
+        latitude: -21.22602172822201,
+        longitude: -45.022544630228424,
+      },
+      {
+        publicId: 'test6',
+        latitude: -21.25306191512753,
+        longitude: -45.005671830261385,
+      },
     ];
-    
+
     const safe: ApplicationScheduleMapPointDto[] = [
-      { publicId: 'test7', latitude: -21.196735935596312, longitude: -44.93748793133561 },
-      { publicId: 'test8', latitude: -21.22970204519957, longitude: -45.072009223534415 },
-      { publicId: 'test9', latitude: -21.275298349774065, longitude: -45.00722006886672 },
+      {
+        publicId: 'test7',
+        latitude: -21.196735935596312,
+        longitude: -44.93748793133561,
+      },
+      {
+        publicId: 'test8',
+        latitude: -21.22970204519957,
+        longitude: -45.072009223534415,
+      },
+      {
+        publicId: 'test9',
+        latitude: -21.275298349774065,
+        longitude: -45.00722006886672,
+      },
     ];
 
     for (const applicationSchedule of applicationScheduleList) {
@@ -70,9 +109,7 @@ export class ApplicationScheduleService {
       );
 
       if (distance <= 7) danger.push(point);
-
       else if (distance <= 10) warning.push(point);
-      
       else safe.push(point);
     }
 
@@ -80,7 +117,7 @@ export class ApplicationScheduleService {
       danger,
       warning,
       safe,
-    }
+    };
   }
 
   private calculateDistance(
