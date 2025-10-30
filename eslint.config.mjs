@@ -11,7 +11,7 @@ export default tseslint.config(
       '**/build/**',
       '**/coverage/**',
       'jest.config.js',
-      'eslint.config.mjs'
+      'eslint.config.mjs',
     ],
   },
   eslint.configs.recommended,
@@ -21,9 +21,8 @@ export default tseslint.config(
     languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.jest,
       },
-      ecmaVersion: 5,
+      ecmaVersion: 2022,
       sourceType: 'module',
       parserOptions: {
         projectService: true,
@@ -36,7 +35,18 @@ export default tseslint.config(
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn'
+      '@typescript-eslint/no-unsafe-argument': 'warn',
+    },
+  },
+  {
+    files: ['**/*.spec.ts', '**/*.test.ts'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+    rules: {
+      '@typescript-eslint/unbound-method': 'off',
     },
   },
 );
