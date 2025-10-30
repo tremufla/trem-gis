@@ -81,7 +81,7 @@ jobs:
         with:
           repository: cesarapires/gitops-projects
           ref: main
-          token: ${{ secrets.GIT_HUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Kustomize
         uses: imranismail/setup-kustomize@v1
@@ -103,7 +103,7 @@ jobs:
       - name: Push Changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GIT_HUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           repository: tremufla/trem-infra
           branch: main
   # sonarqube:
