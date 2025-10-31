@@ -73,7 +73,7 @@ jobs:
           cache-to: type=gha,mode=max
 
   deploy-kubernetes:
-    name: 🛫 Deploy
+    name: 🛫 Deplo
     runs-on: ubuntu-latest
     needs: build-and-push
     steps:
