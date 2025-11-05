@@ -90,7 +90,7 @@ jobs:
 
       - name: Update Kubernetes
         run: |
-          cd ${{ env.IMAGE_NAME }}/kubernetes
+          cd ${{ env.IMAGE_NAME }}
           kustomize edit set image ${{ env.IMAGE_NAME }}-api=${{ env.ACCOUNT }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           cat kustomization.yaml
 
