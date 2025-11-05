@@ -4,10 +4,20 @@ import { AppService } from './app.service';
 import { ApplicationScheduleModule } from './application-schedule/application-schedule.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
+const {
+  DATABASE_USER,
+  DATABASE_PASSWORD,
+  DATABASE_HOST,
+  DATABASE_PORT,
+  DATABASE_NAME,
+} = process.env;
+
+const uri = `mongodb://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?authSource=admin`;
+
 @Module({
   imports: [
     ApplicationScheduleModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/your-database-name'),
+    MongooseModule.forRoot(uri),
   ],
   controllers: [AppController],
   providers: [AppService],
