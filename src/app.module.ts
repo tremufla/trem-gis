@@ -14,6 +14,8 @@ const {
 
 const uri = `mongodb://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}?authSource=admin`;
 
+console.log('Connecting to MongoDB with URI:', uri);
+
 @Module({
   imports: [ApplicationScheduleModule, MongooseModule.forRoot(uri)],
   controllers: [AppController],
