@@ -9,12 +9,12 @@ export enum ApplicationStatus {
 }
 
 @Schema({ timestamps: true })
-export class ApplicationSchedule extends Document {
-  @Prop({ type: Types.ObjectId })
-  id: string;
-
+export class ApplicationSchedule {
   @Prop({ required: true })
   propertiId: string;
+
+  @Prop({ required: true })
+  farmerId: string;
 
   @Prop({ required: true })
   chemicalId: string;

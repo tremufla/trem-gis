@@ -33,7 +33,7 @@ export class ApplicationScheduleService {
     //   })
     //   .exec();
 
-    const applicationScheduleList: ApplicationSchedule[] = [];
+    const applicationScheduleList: ApplicationScheduleDocument[] = [];
 
     const danger: ApplicationScheduleMapPointDto[] = [
       {
@@ -91,7 +91,7 @@ export class ApplicationScheduleService {
 
     for (const applicationSchedule of applicationScheduleList) {
       const point: ApplicationScheduleMapPointDto = {
-        publicId: applicationSchedule.id,
+        publicId: applicationSchedule._id.toString(),
         latitude: applicationSchedule.latitude,
         longitude: applicationSchedule.longitude,
       };
