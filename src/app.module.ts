@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ApplicationScheduleModule } from './application-schedule/application-schedule.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { PropertyModule } from './property/property.module';
 
 const {
   DATABASE_USER,
@@ -17,7 +18,11 @@ const uri = `mongodb://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${
 console.log('Connecting to MongoDB with URI:', uri);
 
 @Module({
-  imports: [ApplicationScheduleModule, MongooseModule.forRoot(uri)],
+  imports: [
+    ApplicationScheduleModule,
+    MongooseModule.forRoot(uri),
+    PropertyModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
