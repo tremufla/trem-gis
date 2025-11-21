@@ -41,7 +41,6 @@ export class ApplicationSchedule extends Document {
   longitude: number;
 }
 
-export const ApplicationScheduleSchema =
-  SchemaFactory.createForClass(ApplicationSchedule);
+export const ApplicationScheduleSchema = SchemaFactory.createForClass(ApplicationSchedule);
 
 export type ApplicationScheduleDocument = HydratedDocument<ApplicationSchedule>;

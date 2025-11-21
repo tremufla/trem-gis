@@ -1,9 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import {
-  ApplicationSchedule,
-  ApplicationScheduleDocument,
-} from './entities/application-schedule.entity';
+import { ApplicationSchedule, ApplicationScheduleDocument } from './entities/application-schedule.entity';
 import { Model } from 'mongoose';
 import { CurrentLocationDto } from './dto/current-location.dto';
 import { ApplicationScheduleMapPointDto } from './dto/application-schedule-map-point.dto';
@@ -18,9 +15,7 @@ export class ApplicationScheduleService {
     private appScheduleModel: Model<ApplicationScheduleDocument>,
   ) {}
 
-  mapView(
-    currentLocationDto: CurrentLocationDto,
-  ): ApplicationScheduleByRiskDto {
+  mapView(currentLocationDto: CurrentLocationDto): ApplicationScheduleByRiskDto {
     const { latitude, longitude } = currentLocationDto;
 
     // const applicationScheduleList: ApplicationSchedule[] = await this.appScheduleModel
@@ -138,9 +133,7 @@ export class ApplicationScheduleService {
         Math.sin(deltaLongitude / 2) *
         Math.sin(deltaLongitude / 2);
 
-    const centralAngle =
-      2 *
-      Math.atan2(Math.sqrt(haversineFormula), Math.sqrt(1 - haversineFormula));
+    const centralAngle = 2 * Math.atan2(Math.sqrt(haversineFormula), Math.sqrt(1 - haversineFormula));
 
     return earthRadiusKm * centralAngle;
   }

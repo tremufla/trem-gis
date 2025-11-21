@@ -4,9 +4,7 @@ import { CurrentLocationDto } from './dto/current-location.dto';
 
 @Controller('application-schedule')
 export class ApplicationScheduleController {
-  constructor(
-    private readonly applicationScheduleService: ApplicationScheduleService,
-  ) {}
+  constructor(private readonly applicationScheduleService: ApplicationScheduleService) {}
 
   @Get()
   mapView(@Body() currentLocationDto: CurrentLocationDto) {

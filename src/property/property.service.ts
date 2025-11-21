@@ -28,9 +28,7 @@ export class PropertyService {
     };
   }
 
-  private toLeanResponseDto(
-    property: PropertyDocument,
-  ): FindAllPropertyLeanResponseDto {
+  private toLeanResponseDto(property: PropertyDocument): FindAllPropertyLeanResponseDto {
     return {
       id: property._id.toString(),
       name: property.name,
@@ -39,10 +37,7 @@ export class PropertyService {
     };
   }
 
-  async create(
-    createPropertyDto: CreatePropertyDto,
-    farmerId: string,
-  ): Promise<PropertyResponseDto> {
+  async create(createPropertyDto: CreatePropertyDto, farmerId: string): Promise<PropertyResponseDto> {
     const propertyCreated = await this.propertyModel.create({
       ...createPropertyDto,
       farmerId,
@@ -57,12 +52,8 @@ export class PropertyService {
     return properties.map((property) => this.toResponseDto(property));
   }
 
-  async findAllLean(
-    farmerId: string,
-  ): Promise<FindAllPropertyLeanResponseDto[]> {
-    const properties: PropertyDocument[] = await this.propertyModel
-      .find({ farmerId })
-      .exec();
+  async findAllLean(farmerId: string): Promise<FindAllPropertyLeanResponseDto[]> {
+    const properties: PropertyDocument[] = await this.propertyModel.find({ farmerId }).exec();
 
     return properties.map((property) => this.toLeanResponseDto(property));
   }

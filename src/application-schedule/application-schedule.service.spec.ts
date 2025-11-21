@@ -21,9 +21,7 @@ describe('ApplicationScheduleService', () => {
       ],
     }).compile();
 
-    service = module.get<ApplicationScheduleService>(
-      ApplicationScheduleService,
-    );
+    service = module.get<ApplicationScheduleService>(ApplicationScheduleService);
   });
 
   it('should be defined', () => {

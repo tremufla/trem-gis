@@ -5,11 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Property, PropertySchema } from './entities/property.entity';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      { name: Property.name, schema: PropertySchema },
-    ]),
-  ],
+  imports: [MongooseModule.forFeature([{ name: Property.name, schema: PropertySchema }])],
   controllers: [PropertyController],
   providers: [PropertyService],
 })
